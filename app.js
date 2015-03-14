@@ -5,11 +5,9 @@ var request = require('request')
   , yt = require('youtube-dl')
   , fs = require('fs')
 
-var ytInfo = Promise.promisify(yt.getInfo)
 
-var tree = md.parse(fs.readFileSync('./tmp/README.md', 'utf8'))
-
-var youtubeUrls =
+request('https://raw.githubusercontent.com/poteto/emberconf-2015/master/README.md', function (err, res, body) {
+  var tree = md.parse(body)
   _(tree)
     .flatten()
     .filter(_.isArray)
@@ -24,25 +22,9 @@ var youtubeUrls =
           return {}
         }
 
-        yt(url).pipe(fs.createWriteStream(info.title + '.mp4'))
+        //yt(url).pipe(fs.createWriteStream(info.title + '.mp4'))
+        console.log(info.title)
       })
     })
-    /*.map(function (p) {
-      return p
-        .then(function (info) {
-          console.log({'title': info.title, 'url': info.url})
-          return {'title': info.title, 'url': info.url}
-        })
-        .catch(function (err) {
-          //console.log('Something went wrong', err)
-          return {}
-        })
-    })*/
     .value()
-
-//console.log(youtubeUrls)
-
-//ytInfo('https://www.youtube.com/watch?v=qWcNZ3j3y6g')
-//  .then(function (info) {
-//    console.log(info.title)
-//  })
+})
