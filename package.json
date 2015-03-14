@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/jvtrigueros/ember-conf-downloader/issues"
   },
-  "homepage": "https://github.com/jvtrigueros/ember-conf-downloader"
+  "homepage": "https://github.com/jvtrigueros/ember-conf-downloader",
+  "dependencies": {
+    "request": "^2.53.0",
+    "markdown": "^0.5.0",
+    "lodash": "^3.5.0",
+    "youtube-dl": "^1.10.1",
+    "bluebird": "^2.9.14"
+  }
 }
