@@ -22,10 +22,12 @@
   },
   "homepage": "https://github.com/jvtrigueros/ember-conf-downloader",
   "dependencies": {
-    "request": "^2.53.0",
-    "markdown": "^0.5.0",
+    "bluebird": "^2.9.14",
     "lodash": "^3.5.0",
-    "youtube-dl": "^1.10.1",
-    "bluebird": "^2.9.14"
+    "markdown": "^0.5.0",
+    "nomnom": "^1.8.1",
+    "progress": "^1.1.8",
+    "request": "^2.53.0",
+    "youtube-dl": "^1.10.1"
   }
 }

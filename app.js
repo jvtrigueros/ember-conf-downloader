@@ -5,6 +5,7 @@ var Promise = require('bluebird')
   , yt = require('youtube-dl')
   , fs = require('fs')
   , path = require('path')
+  , ProgressBar = require('progress')
 
 var getInfoAsync = Promise.promisify(yt.getInfo)
 
@@ -30,7 +31,7 @@ function _extractData(urls) {
              , url: info.url
              }
     })
-    .catch(function (err) { console.log('Something went wrong.', err)})
+    .catch(function (err) { console.log('Something went wrong.', err) })
 }
 
 function list(urls) {
@@ -42,15 +43,27 @@ function get(urls, index) {
   _extractData(urls)
     .then(function (urls) {
       var video = urls[index - 1]
-      var length = 0;
-      var current = 0;
+
       request
         .get(video.url)
         .on('response', function (response) {
-          length = parseFloat(response.headers['content-length'])
+          var downloadMsg = 'Downloading: ' + video.title;
+          console.log(downloadMsg)
+
+          var length = parseInt(response.headers['content-length'], 10)
+          var barOptions = { complete: '='
+                           , incomplete: ' '
+                           , width: downloadMsg.length - 12
+                           , total: length
+                           }
+
+          var bar = new ProgressBar('[:bar] :percent :etas', barOptions)
           response.on('data', function (data) {
-            current += data.length
-            console.log(current/length * 100)
+            bar.tick(data.length)
+          })
+
+          response.on('end', function () {
+            console.log('\n')
           })
         })
         .pipe(fs.createWriteStream(video.title + '.mp4'))
