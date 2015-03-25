@@ -1,8 +1,12 @@
 {
-  "name": "ember-conf-downloader",
+  "name": "emberconf-cli",
   "version": "1.0.0",
   "description": "Download EmberConf videos for offline viewing.",
   "main": "app.js",
+  "preferGlobal": true,
+  "bin": {
+    "emberconf": "app.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +19,7 @@
     "ember",
     "conf"
   ],
-  "author": "Jose V. Trigueros",
+  "author": "Jose V. Trigueros <j.v.trigueros@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jvtrigueros/ember-conf-downloader/issues"
