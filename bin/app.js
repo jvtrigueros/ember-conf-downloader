@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+
 'use strict'
 
 var parser = require('nomnom')
   , _ = require('lodash')
-  , cli = require('./lib/emberconf')
+  , cli = require('./../lib/emberconf')
 
 parser.script('emberconf')
 

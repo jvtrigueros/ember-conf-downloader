@@ -2,10 +2,8 @@
   "name": "emberconf-cli",
   "version": "1.0.0",
   "description": "Download EmberConf videos for offline viewing.",
-  "main": "app.js",
-  "preferGlobal": true,
   "bin": {
-    "emberconf": "app.js"
+    "emberconf": "./bin/app.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
